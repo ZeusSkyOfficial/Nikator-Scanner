@@ -1,268 +1,268 @@
 # Nikator Scanner
 
-**فارسی** | [English](README_EN.md)
+[فارسی](README_FA.md) | **English**
 
 **SNI Finder • IP Finder • IP Scanner • IP Config**
 
-مجموعه‌ی دسکتاپ برای بررسی SNI، DNS، TCP، TLS، HTTP، دسترسی‌پذیری IP و سازگاری کانفیگ‌های شبکه
+A desktop toolkit for SNI, DNS, TCP, TLS, HTTP, IP reachability, and network configuration compatibility diagnostics.
 
-توسعه‌یافته توسط **تیم نیکاتور (Nikator Team)**  
-سازنده و پشتیبانی: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
-
----
-
-## فهرست مطالب
-
-- [معرفی برنامه](#معرفی-برنامه)
-- [قابلیت‌ها](#قابلیت‌ها)
-- [مفاهیم پایه](#مفاهیم-پایه)
-- [اجرای برنامه](#اجرای-برنامه)
-- [آموزش استفاده](#آموزش-استفاده)
-- [تفسیر نتایج](#تفسیر-نتایج)
-- [تنظیمات و محل ذخیره‌سازی](#تنظیمات-و-محل-ذخیرهسازی)
-- [خروجی گرفتن](#خروجی-گرفتن)
-- [کلیدهای میانبر](#کلیدهای-میانبر)
-- [ساخت فایل اجرایی ویندوز](#ساخت-فایل-اجرایی-ویندوز)
-- [رفع خطاهای رایج](#رفع-خطاهای-رایج)
-- [حریم خصوصی و استفاده‌ی مسئولانه](#حریم-خصوصی-و-استفادهی-مسئولانه)
+Developed by **Nikator Team**  
+Creator and support: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
 
 ---
 
-## معرفی برنامه
+## Table of Contents
 
-**Nikator Scanner** یک ابزار گرافیکی برای عیب‌یابی مرحله‌به‌مرحله‌ی ارتباطات شبکه است. این برنامه کمک می‌کند مشخص شود مشکل اتصال دقیقاً در کدام مرحله رخ می‌دهد:
-
-1. تبدیل دامنه به IP در مرحله‌ی DNS
-2. برقراری اتصال TCP با پورت مقصد
-3. انجام TLS Handshake و بررسی گواهی امنیتی
-4. دریافت پاسخ HTTP یا HTTPS
-
-برنامه برای مدیران شبکه، توسعه‌دهندگان، پژوهشگران امنیت و کاربرانی طراحی شده است که می‌خواهند وضعیت دامنه، SNI، IP یا سرویس خود را با جزئیات بیشتری بررسی کنند.
-
-رابط برنامه با **PySide6** ساخته شده و عملیات اسکن در پردازش‌های پس‌زمینه انجام می‌شود تا رابط کاربری هنگام بررسی چند هدف پاسخ‌گو باقی بماند.
-
----
-
-## قابلیت‌ها
-
-### اسکن SNI و کشف زیردامنه
-
-- دریافت دامنه‌ی اصلی و ساخت فهرست نامزدهای SNI
-- استفاده از فهرست داخلی زیردامنه‌ها
-- پشتیبانی از Wordlist دلخواه کاربر
-- دریافت نام‌های عمومی از Certificate Transparency در `crt.sh`
-- بررسی جداگانه‌ی DNS، TCP، TLS و HTTP
-- نمایش آمار زنده، درصد موفقیت و میانگین تأخیر
-- مشاهده‌ی جزئیات گواهی X.509، صادرکننده، SAN، تاریخ اعتبار و Cipher
-
-### تست کانفیگ شبکه
-
-- شناسایی امن مقصدها از قالب‌هایی مانند `vless://`، `vmess://`، `trojan://`، `ss://` و `https://`
-- پشتیبانی از ورودی متنی و ساختارهای رایج JSON یا YAML
-- استخراج Host، Port و SNI بدون اجرای محتوای کانفیگ
-- بررسی DNS، TCP و TLS مقصدهای استخراج‌شده
-- ساخت نسخه‌ی کانفیگ با IP سالم در موارد پشتیبانی‌شده
-
-### تست دسترسی‌پذیری IP
-
-- پذیرش IPv4 و IPv6
-- ورود مستقیم چند IP یا خواندن از فایل TXT/CSV
-- بررسی پورت، TLS و زمان پاسخ
-- تفکیک خطای شبکه‌ی محلی از خطای سرویس مقصد
-
-### بررسی سازگاری SNI
-
-- آزمایش SNIهای مختلف روی IP یا Front موردنظر
-- بررسی تطابق گواهی با نام SNI
-- پشتیبانی از SAN و Wildcard Certificate
-- مقایسه‌ی حالت‌های مختلف برای پژوهش سازگاری
-
-### تاریخچه و گزارش‌ها
-
-- ذخیره‌ی نشست‌های اسکن در SQLite
-- جست‌وجو و مشاهده‌ی جزئیات نتایج قبلی
-- حذف نشست‌های انتخاب‌شده یا پاک‌سازی تاریخچه
-- خروجی در قالب‌های JSON، CSV و TXT
+- [About](#about)
+- [Features](#features)
+- [Core Concepts](#core-concepts)
+- [Running the Application](#running-the-application)
+- [Usage Guide](#usage-guide)
+- [Understanding Results](#understanding-results)
+- [Settings and Data Storage](#settings-and-data-storage)
+- [Exporting Results](#exporting-results)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Building the Windows Executable](#building-the-windows-executable)
+- [Troubleshooting](#troubleshooting)
+- [Privacy and Responsible Use](#privacy-and-responsible-use)
 
 ---
 
-## مفاهیم پایه
+## About
 
-| مرحله | چه چیزی بررسی می‌شود؟ | نمونه‌ی خطا |
+**Nikator Scanner** is a graphical toolkit for diagnosing network connections step by step. It helps identify the exact stage at which a connection fails:
+
+1. Resolving a domain to an IP address through DNS
+2. Establishing a TCP connection to the destination port
+3. Performing a TLS handshake and inspecting the security certificate
+4. Receiving an HTTP or HTTPS response
+
+The application is intended for network administrators, developers, security researchers, and users who need detailed information about the status of a domain, SNI, IP address, or service.
+
+The interface is built with **PySide6**, while scanning operations run in background workers so the UI remains responsive when multiple targets are being checked.
+
+---
+
+## Features
+
+### SNI Scanning and Subdomain Discovery
+
+- Accepts a root domain and builds a list of SNI candidates
+- Uses a built-in subdomain dataset
+- Supports custom user-provided wordlists
+- Collects public names from Certificate Transparency through `crt.sh`
+- Tests DNS, TCP, TLS, and HTTP independently
+- Displays live statistics, success rate, and average latency
+- Shows X.509 certificate details, issuer, SAN entries, validity dates, and cipher information
+
+### Network Configuration Testing
+
+- Safely identifies destinations in formats such as `vless://`, `vmess://`, `trojan://`, `ss://`, and `https://`
+- Supports plain text and common JSON or YAML structures
+- Extracts the host, port, and SNI without executing configuration content
+- Checks DNS, TCP, and TLS for extracted destinations
+- Generates a configuration using a verified IP when the format is supported
+
+### IP Reachability Testing
+
+- Supports IPv4 and IPv6
+- Accepts multiple IP addresses directly or imports TXT/CSV files
+- Tests ports, TLS, and response time
+- Helps distinguish local network failures from remote service failures
+
+### SNI Compatibility Testing
+
+- Tests multiple SNI values against a selected IP address or front
+- Verifies whether the certificate matches the requested SNI
+- Supports SAN and wildcard certificate matching
+- Compares different cases for compatibility research
+
+### History and Reports
+
+- Saves scan sessions in SQLite
+- Searches and displays detailed results from previous sessions
+- Deletes selected sessions or clears the complete history
+- Exports results as JSON, CSV, or TXT
+
+---
+
+## Core Concepts
+
+| Stage | What is tested? | Example failure |
 |---|---|---|
-| DNS | آیا دامنه به IP تبدیل می‌شود؟ | دامنه وجود ندارد یا Resolver پاسخ نمی‌دهد |
-| TCP | آیا اتصال به IP و Port برقرار می‌شود؟ | پورت بسته، Timeout یا Firewall |
-| TLS | آیا ارتباط رمزنگاری‌شده برقرار می‌شود؟ | SNI اشتباه، گواهی نامعتبر یا ناسازگاری نسخه‌ی TLS |
-| HTTP | آیا سرویس وب پاسخ می‌دهد؟ | کد خطای 4xx/5xx، Redirect یا عدم پاسخ |
+| DNS | Can the domain be resolved to an IP address? | The domain does not exist or the resolver does not respond |
+| TCP | Can a connection be established to the IP and port? | Closed port, timeout, or firewall restriction |
+| TLS | Can an encrypted connection be established? | Incorrect SNI, invalid certificate, or incompatible TLS version |
+| HTTP | Does the web service return a response? | 4xx/5xx status, redirect, or no response |
 
-### SNI چیست؟
+### What Is SNI?
 
-SNI یا **Server Name Indication** نام دامنه‌ای است که هنگام شروع TLS Handshake برای سرور ارسال می‌شود. وقتی چند دامنه از یک IP مشترک استفاده می‌کنند، سرور با کمک SNI گواهی و سرویس درست را انتخاب می‌کند.
+SNI, or **Server Name Indication**, is the domain name sent to a server when a TLS handshake begins. When several domains share one IP address, the server uses SNI to select the correct service and certificate.
 
-### تفاوت «اتصال موفق» و «گواهی منطبق»
+### Successful Connection vs. Matching Certificate
 
-ممکن است TLS Handshake موفق باشد اما گواهی دریافت‌شده برای SNI موردنظر صادر نشده باشد. در این حالت ارتباط فنی برقرار شده است، ولی هویت دامنه تأیید نمی‌شود. برنامه این دو وضعیت را جداگانه نمایش می‌دهد.
-
----
-
-## اجرای برنامه
-
-**Nikator Scanner پرتابل است و نیازی به نصب ندارد.**
-
-1. فایل برنامه را دریافت کنید.
-2. اگر فایل داخل ZIP است، ابتدا آن را کامل Extract کنید.
-3. روی `NikatorScanner.exe` دوبار کلیک کنید.
-4. برنامه مستقیماً باز می‌شود و نیازی به Setup، نصب Python یا نصب کتابخانه‌ی جداگانه ندارد.
+A TLS handshake can succeed even when the returned certificate was not issued for the requested SNI. In that case, the technical connection is available, but the domain identity is not verified. Nikator Scanner displays these two conditions separately.
 
 ---
 
-## آموزش استفاده
+## Running the Application
 
-### ۱. اسکن دامنه و SNI
+**Nikator Scanner is portable and does not require installation.**
 
-1. از منوی کناری وارد صفحه‌ی اسکن SNI شوید.
-2. دامنه را بدون `https://` و بدون مسیر اضافی وارد کنید؛ برای مثال `example.com`.
-3. منبع نامزدها را انتخاب کنید: فهرست داخلی، CT Logs یا Wordlist شخصی.
-4. Timeout، تعداد تلاش مجدد و میزان هم‌زمانی را متناسب با کیفیت شبکه تنظیم کنید.
-5. اسکن را شروع کنید و آمار زنده را دنبال کنید.
-6. با انتخاب هر ردیف، جزئیات DNS، TCP، TLS، گواهی و HTTP را ببینید.
+1. Download the application file.
+2. If it is inside a ZIP archive, extract the archive completely.
+3. Double-click `NikatorScanner.exe`.
+4. The application opens directly. No setup process, Python installation, or separate library installation is required.
 
-برای شروع، Concurrency متوسط انتخاب کنید. مقدار بسیار بالا ممکن است باعث Rate Limit، مصرف زیاد منابع یا نتایج ناپایدار شود.
+---
 
-### ۲. آزمایش کانفیگ
+## Usage Guide
 
-1. وارد صفحه‌ی «تست‌کننده کانفیگ» شوید.
-2. کانفیگ‌ها را در کادر ورودی قرار دهید یا فایل را وارد کنید.
-3. پس از Parse، مقصدهای استخراج‌شده را بررسی کنید.
-4. تست را اجرا کنید تا وضعیت DNS، TCP و TLS هر مقصد مشخص شود.
-5. در صورت پشتیبانی قالب، می‌توانید نسخه‌ی کانفیگ با IP انتخابی را کپی کنید.
+### 1. Domain and SNI Scan
 
-> کانفیگ واقعی ممکن است حاوی UUID، رمز یا اطلاعات دسترسی باشد. آن را در Issue، Screenshot، فایل عمومی یا خروجی قابل‌اشتراک قرار ندهید.
+1. Open the SNI Scanner page from the sidebar.
+2. Enter the domain without `https://` or an additional path; for example, `example.com`.
+3. Select the candidate source: the built-in dataset, CT Logs, or a custom wordlist.
+4. Adjust the timeout, retry count, and concurrency for your network conditions.
+5. Start the scan and follow the live statistics.
+6. Select a row to inspect its DNS, TCP, TLS, certificate, and HTTP details.
 
-### ۳. آزمایش IP
+Start with moderate concurrency. A very high value can trigger rate limits, increase resource usage, or produce unstable results.
 
-1. در صفحه‌ی IP Tester، هر IP را در یک خط وارد کنید.
-2. پورت موردنظر را مشخص کنید؛ پورت پیش‌فرض سرویس‌های HTTPS معمولاً `443` است.
-3. برای بررسی TLS می‌توانید SNI مناسب را نیز وارد کنید.
-4. نتایج اتصال و Latency را مشاهده یا ذخیره کنید.
+### 2. Configuration Test
 
-نمونه‌ی ورودی:
+1. Open the Configuration Tester page.
+2. Paste configurations into the input field or import a file.
+3. Review the destinations extracted by the parser.
+4. Run the test to check DNS, TCP, and TLS for each destination.
+5. When supported, copy a generated version of the configuration using a selected IP address.
+
+> A real configuration may contain a UUID, password, or access credentials. Never publish it in an issue, screenshot, public file, or shared export.
+
+### 3. IP Test
+
+1. On the IP Tester page, enter one IP address per line.
+2. Select the required port. HTTPS services commonly use port `443`.
+3. Provide an appropriate SNI value when testing TLS.
+4. Review or export the connection and latency results.
+
+Example input:
 
 ```text
 1.1.1.1
 8.8.8.8
 ```
 
-### ۴. بررسی سازگاری SNI
+### 4. SNI Compatibility Test
 
-1. IP یا Front هدف را وارد کنید.
-2. فهرست SNIها را از ورودی کاربر یا Dataset عمومی انتخاب کنید.
-3. اسکن را اجرا کنید.
-4. ستون تطابق گواهی را بررسی کنید؛ Handshake موفق به‌تنهایی به معنی تطابق دامنه نیست.
+1. Enter the target IP address or front.
+2. Select SNI values from user input or the public dataset.
+3. Start the scan.
+4. Check the certificate-match column. A successful handshake alone does not guarantee that the certificate matches the requested domain.
 
-### ۵. مشاهده‌ی تاریخچه
+### 5. Viewing History
 
-صفحه‌ی تاریخچه نشست‌های قبلی را نشان می‌دهد. از این قسمت می‌توانید:
+The History page displays previous scan sessions. You can:
 
-- نتایج یک نشست را دوباره بررسی کنید.
-- نشست‌ها را جست‌وجو یا حذف کنید.
-- نتیجه‌ی انتخاب‌شده را به فایل تبدیل کنید.
+- Review the results of a session
+- Search for or delete sessions
+- Export the selected results to a file
 
 ---
 
-## تفسیر نتایج
+## Understanding Results
 
-| وضعیت | معنی پیشنهادی |
+| Status | Meaning |
 |---|---|
-| Success | مراحل لازم برای آن تست با موفقیت تکمیل شده‌اند |
-| Failed | یک یا چند مرحله ناموفق بوده‌اند؛ جزئیات ردیف را باز کنید |
-| Timeout | مقصد در زمان تعیین‌شده پاسخ نداده است |
-| DNS Error | دامنه Resolve نشده یا Resolver در دسترس نیست |
-| TCP Error | اتصال به IP و Port برقرار نشده است |
-| TLS Error | TLS Handshake، گواهی یا SNI مشکل دارد |
+| Success | The required stages for the selected test completed successfully |
+| Failed | One or more stages failed; open the row details for more information |
+| Timeout | The destination did not respond within the configured time |
+| DNS Error | The domain could not be resolved or the resolver was unavailable |
+| TCP Error | A connection to the IP address and port could not be established |
+| TLS Error | The TLS handshake, certificate, or SNI is invalid or incompatible |
 
-نتیجه‌ی یک تست به شرایط همان لحظه‌ی شبکه وابسته است. برای نتیجه‌ی مطمئن‌تر، آزمایش را در چند زمان و در صورت نیاز با DNS متفاوت تکرار کنید.
+Test results depend on current network conditions. For a more reliable diagnosis, repeat the test at different times and, when appropriate, use another DNS resolver.
 
 ---
 
-## تنظیمات و محل ذخیره‌سازی
+## Settings and Data Storage
 
-تنظیمات کاربر به‌صورت محلی ذخیره می‌شوند:
+User settings are stored locally at:
 
 ```text
 ~/.nikator_scanner/config.json
 ```
 
-تاریخچه‌ی اسکن‌ها:
+Scan history is stored at:
 
 ```text
 ~/.nikator_scanner/history.db
 ```
 
-فایل‌های گزارش در صورت فعال بودن Logging:
+When logging is enabled, log files are stored at:
 
 ```text
 ~/.nikator_scanner/logs/nikator_scanner.log
 ```
 
-از صفحه‌ی تنظیمات می‌توان موارد زیر را تغییر داد:
+The Settings page provides controls for:
 
-- Timeout مربوط به DNS، TCP، TLS و HTTP
-- DNS Resolverهای دلخواه
-- تعداد Workerها و تلاش مجدد
-- فاصله‌ی بین درخواست‌ها
-- اندازه‌ی فونت و حالت فشرده‌ی جدول
-- سطح Logging و مدت نگهداری تاریخچه
-- پوشه‌ی پیش‌فرض خروجی
+- DNS, TCP, TLS, and HTTP timeouts
+- Custom DNS resolvers
+- Worker count and retry count
+- Delay between requests
+- Font size and compact table mode
+- Logging level and history retention period
+- Default export directory
 
 ---
 
-## خروجی گرفتن
+## Exporting Results
 
 ### JSON
 
-مناسب برای پردازش برنامه‌نویسی، آرشیو ساختاریافته یا انتقال به ابزارهای دیگر.
+Best suited for programmatic processing, structured archives, and integration with other tools.
 
 ### CSV
 
-مناسب برای Excel، Google Sheets و تحلیل جدولی.
+Best suited for Excel, Google Sheets, and table-based analysis.
 
 ### TXT
 
-مناسب برای مطالعه‌ی مستقیم، گزارش ساده و بایگانی متنی.
+Best suited for direct reading, simple reports, and text archives.
 
-پیش از اشتراک‌گذاری خروجی، Host، IP، SNI، گواهی و سایر اطلاعات زیرساختی را بازبینی کنید.
+Before sharing an export, review its host, IP address, SNI, certificate, and other infrastructure information.
 
 ---
 
-## کلیدهای میانبر
+## Keyboard Shortcuts
 
-| میانبر | عملکرد |
+| Shortcut | Action |
 |---|---|
-| `Ctrl + C` | کپی ردیف‌های انتخاب‌شده |
-| `Ctrl + A` | انتخاب تمام ردیف‌ها |
-| `Ctrl + F` | رفتن به بخش جست‌وجو |
-| `Ctrl + S` | خروجی سریع نتایج |
-| `F5` | تلاش مجدد برای موارد ناموفق |
-| `Escape` | بستن پنجره یا Dialog فعال |
+| `Ctrl + C` | Copy selected rows |
+| `Ctrl + A` | Select all rows |
+| `Ctrl + F` | Focus the search field |
+| `Ctrl + S` | Quickly export results |
+| `F5` | Retry failed targets |
+| `Escape` | Close the active window or dialog |
 
 ---
 
-## ساخت فایل اجرایی ویندوز
+## Building the Windows Executable
 
-ابتدا PyInstaller را نصب کنید:
+Install PyInstaller:
 
 ```bash
 python -m pip install pyinstaller
 ```
 
-سپس از فایل Spec موجود استفاده کنید:
+Build the project with the provided spec file:
 
 ```bash
 pyinstaller pyinstaller.spec
 ```
 
-خروجی در مسیر زیر ساخته می‌شود:
+The executable is generated at:
 
 ```text
 dist/NikatorScanner.exe
@@ -270,72 +270,72 @@ dist/NikatorScanner.exe
 
 ---
 
-## رفع خطاهای رایج
+## Troubleshooting
 
-### برنامه باز نمی‌شود
+### The Application Does Not Open
 
-- برنامه را مستقیماً از داخل فایل ZIP اجرا نکنید؛ ابتدا همه‌ی فایل‌ها را Extract کنید.
-- بررسی کنید آنتی‌ویروس فایل را قرنطینه نکرده باشد.
-- نسخه‌ی رسمی و جدید برنامه را دوباره دریافت کنید.
-- یک‌بار برنامه را با گزینه‌ی **Run as administrator** اجرا کنید.
+- Do not run the application directly from inside the ZIP archive. Extract all files first.
+- Check whether your antivirus has quarantined the file.
+- Download the latest official release again.
+- Try running the application once with **Run as administrator**.
 
-### نمایش هشدار Windows SmartScreen
+### Windows SmartScreen Warning
 
-اگر فایل را از صفحه‌ی رسمی پروژه دریافت کرده‌اید، روی **More info** و سپس **Run anyway** بزنید. فایل دریافت‌شده از منبع ناشناس را اجرا نکنید.
+If you downloaded the file from the official project page, select **More info** and then **Run anyway**. Never run a file obtained from an unknown source.
 
-### Timeout زیاد یا نتیجه‌ی ناپایدار
+### Frequent Timeouts or Unstable Results
 
-- Concurrency را کاهش دهید.
-- Timeout را کمی افزایش دهید.
-- DNS Resolver دیگری انتخاب کنید.
-- اتصال اینترنت و محدودیت Firewall را بررسی کنید.
+- Reduce concurrency.
+- Increase the timeout slightly.
+- Select another DNS resolver.
+- Check your internet connection and firewall restrictions.
 
-### خطای TLS یا عدم تطابق گواهی
+### TLS Error or Certificate Mismatch
 
-- SNI را بررسی کنید.
-- ساعت و تاریخ سیستم را کنترل کنید.
-- مطمئن شوید پورت مقصد واقعاً TLS ارائه می‌دهد.
-- جزئیات Subject و SAN گواهی را مشاهده کنید.
-
----
-
-## حریم خصوصی و استفاده‌ی مسئولانه
-
-- برنامه برای عیب‌یابی شبکه، بررسی DNS و ارزیابی سازگاری TLS طراحی شده است.
-- فقط سامانه‌هایی را آزمایش کنید که مالک آن هستید یا مجوز صریح بررسی آن‌ها را دارید.
-- برنامه برای Exploit، نفوذ یا دور زدن مجوز دسترسی طراحی نشده است.
-- کانفیگ‌ها، تاریخچه‌ها و خروجی‌ها ممکن است اطلاعات حساس زیرساخت را شامل شوند؛ قبل از اشتراک‌گذاری آن‌ها را بازبینی کنید.
-- فایل‌های محلی مانند دیتابیس، لاگ، خروجی‌ها، محیط‌های مجازی و کلیدها توسط `.gitignore` از مخزن دور نگه داشته می‌شوند.
-- یک محافظ محلی پیش از Commit نیز الگوهای رایج توکن و کلید را بررسی می‌کند.
+- Verify the SNI value.
+- Check the system date and time.
+- Make sure the destination port actually provides TLS.
+- Inspect the Subject and SAN fields in the certificate details.
 
 ---
 
-## ساختار پروژه
+## Privacy and Responsible Use
+
+- Nikator Scanner is designed for network diagnostics, DNS inspection, and TLS compatibility evaluation.
+- Only test systems that you own or have explicit permission to assess.
+- The application is not designed for exploitation, unauthorized access, or bypassing access controls.
+- Configurations, scan history, and exports may contain sensitive infrastructure details. Review them before sharing.
+- Local databases, logs, exports, virtual environments, and keys are excluded from the repository through `.gitignore`.
+- A local pre-commit guard also checks for common token and key patterns.
+
+---
+
+## Project Structure
 
 ```text
 nikator-scanner/
-├── data/          # Datasetهای عمومی
-├── database/      # مدیریت تاریخچه SQLite
-├── models/        # مدل‌های داده و نتیجه
-├── network/       # DNS، TCP، TLS و HTTP
-├── parsers/       # تجزیه‌ی امن کانفیگ‌ها
-├── scanners/      # موتورهای اسکن
-├── ui/            # رابط گرافیکی PySide6
-├── utils/         # تنظیمات، خروجی و ابزارهای کمکی
-├── main.py        # نقطه‌ی شروع برنامه
+├── data/          # Public datasets
+├── database/      # SQLite history management
+├── models/        # Data and result models
+├── network/       # DNS, TCP, TLS, and HTTP modules
+├── parsers/       # Safe configuration parsing
+├── scanners/      # Scanning engines
+├── ui/            # PySide6 graphical interface
+├── utils/         # Settings, exports, and helper utilities
+├── main.py        # Application entry point
 └── requirements.txt
 ```
 
 ---
 
-## پشتیبانی
+## Support
 
-برای گزارش مشکل، ابتدا توضیح خطا، سیستم‌عامل، نسخه‌ی Python و مراحل بازتولید را آماده کنید. اطلاعات حساس، توکن یا کانفیگ واقعی را در گزارش عمومی قرار ندهید.
+When reporting a problem, include an error description, your operating system, the application version, and the steps required to reproduce the issue. Never include sensitive information, tokens, or real configurations in a public report.
 
-تلگرام سازنده و پشتیبانی: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
+Creator and support on Telegram: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
 
 ---
 
-## حقوق استفاده
+## Usage Rights
 
-تمامی حقوق این پروژه متعلق به **تیم نیکاتور** است. این مخزن در حال حاضر فایل مجوز مستقل ندارد؛ بنابراین استفاده، بازنشر یا ایجاد نسخه‌ی مشتق‌شده باید با اجازه‌ی صاحب پروژه انجام شود.
+All rights to this project are reserved by **Nikator Team**. The repository currently has no separate license file; therefore, reuse, redistribution, or derivative works require permission from the project owner.
