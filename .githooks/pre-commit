@@ -1,0 +1,12 @@
+#!/bin/sh
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+if command -v pwsh >/dev/null 2>&1; then
+    exec pwsh -NoProfile -ExecutionPolicy Bypass -File "$script_dir/pre-commit.ps1"
+elif command -v powershell.exe >/dev/null 2>&1; then
+    exec powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$script_dir/pre-commit.ps1"
+else
+    echo "Commit blocked: PowerShell is required for the secret scan hook." >&2
+    exit 1
+fi

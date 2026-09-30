@@ -1,0 +1,87 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging / PyInstaller
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Installer files
+*.exe
+*.msi
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.ovpn
+*.mobileprovision
+id_rsa*
+id_ed25519*
+.npmrc
+.pypirc
+.netrc
+_netrc
+.aws/
+.ssh/
+.azure/
+.config/gh/
+credentials.*
+secrets.*
+tokens.*
+*_credentials.*
+*_secrets.*
+*_tokens.*
+service-account*.json
+auth.json
+cookies.*
+sessions.*
+
+# User databases, runtime logs, and cache
+*.log
+*.sqlite
+*.sqlite3
+*.db
+.cache/
+.nikator_scanner/
+.netscanner_pro/
+
+# IDE and Editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Diagnostic export outputs (if user saves inside project root)
+nikator_scanner_results.*
+config_clean_ips.*
+netscanner_results.*
+*.csv
+*.json
+!data/datasets/*
+
+# OS generated files
+desktop.ini

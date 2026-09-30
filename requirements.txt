@@ -1,0 +1,5 @@
+# Nikator Scanner - Requirements
+PySide6-Essentials>=6.5.0
+dnspython>=2.4.0
+httpx>=0.25.0
+cryptography>=41.0.0
