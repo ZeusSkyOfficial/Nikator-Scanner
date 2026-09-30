@@ -14,6 +14,7 @@ Creator and support: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
 ## Table of Contents
 
 - [About](#about)
+- [Application Screenshots](#application-screenshots)
 - [Features](#features)
 - [Core Concepts](#core-concepts)
 - [Running the Application](#running-the-application)
@@ -40,6 +41,28 @@ Creator and support: [@Zeusskyofficial](https://t.me/Zeusskyofficial)
 The application is intended for network administrators, developers, security researchers, and users who need detailed information about the status of a domain, SNI, IP address, or service.
 
 The interface is built with **PySide6**, while scanning operations run in background workers so the UI remains responsive when multiple targets are being checked.
+
+---
+
+## Application Screenshots
+
+### SNI Scanner Results
+
+![Nikator Scanner - SNI scan results](docs/screenshots/sni-scanner-results.png)
+
+Sample SNI discovery and diagnostic results, including DNS, TCP, TLS, HTTPS, certificate, status, and latency information.
+
+### Configuration Tester and Clean IP Results
+
+![Nikator Scanner - configuration tester and clean IP results](docs/screenshots/config-tester-results-redacted.png)
+
+Sample configuration analysis and clean-IP extraction. The real configuration is intentionally redacted to protect access credentials.
+
+### IP Scanner Results
+
+![Nikator Scanner - IP reachability results](docs/screenshots/ip-scanner-results.png)
+
+Sample IP reachability, TCP, TLS, latency, and connection-status results.
 
 ---
 
