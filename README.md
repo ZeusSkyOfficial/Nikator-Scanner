@@ -1,5 +1,7 @@
 # Nikator Scanner
 
+**فارسی** | [English](README_EN.md)
+
 **SNI Finder • IP Finder • IP Scanner • IP Config**
 
 مجموعه‌ی دسکتاپ برای بررسی SNI، DNS، TCP، TLS، HTTP، دسترسی‌پذیری IP و سازگاری کانفیگ‌های شبکه
